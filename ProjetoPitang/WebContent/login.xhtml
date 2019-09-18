@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+#formulario {
+	
+}
+#icon {
+	width: 100px;
+	height: 100px;
+	padding-left: 40%;
+	padding-bottom: 10px;
+}
+.todo {
+	width: 300px;
+	height: 100px;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -170px 10px 50px -170px;
+}
+</style>
+</h:head>
+<h:body>
+	<div class="todo">
+		<h:graphicImage library="images"
+			name="471a1ad342659289433e05a611d206f8.png" id="icon" />
+		<div id="formulario">
+			<h:form id="form">
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:panelGrid id="dados" columns="2">
+					<p:outputLabel id="usuarioLabel" value="Usuario:" />
+					<p:inputText id="usuarioValue" label="Nome"
+						value="#{usuarioMB.usuario.email}" required="true"
+						requiredMessage="Campo Usuario está vazio" />
+					<p:outputLabel id="senhaLabel" value="Senha:" />
+					<p:password id="senhaValue" label="Senha"
+						value="#{usuarioMB.usuario.senha}" required="true"
+						requiredMessage="Campo Senha está vazio" />
+					<h:commandButton id="btnlogin" value="Login"
+						action="#{usuarioMB.logar()}" update="growl" />
+				
+				</p:panelGrid>
+			
+					<p:blockUI block="dados" trigger="btnlogin">
+		Carregando..
+   		<p:graphicImage library="images" name="gif-load.gif" />
+					</p:blockUI>
+			
+			</h:form>
+		</div>
+	</div>
+
+	<p:messages errorClass="danger" infoClass="info" warnClass="warn">
+	</p:messages>
+
+</h:body>
+</html>
